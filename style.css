@@ -279,10 +279,11 @@ body::after {
   text-align: center;
   padding: 16px;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
 }
-.board-overlay.show { opacity: 1; pointer-events: auto; }
+.board-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
 
 .overlay-title {
   margin: 0;
