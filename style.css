@@ -232,12 +232,13 @@ body::after {
 }
 .tile-merged { z-index: 20; }
 .tile-merged .tile-inner {
-  animation: pop 0.22s ease 0.1s backwards;
+  /* 不用 backwards：滑动期间就满尺寸显示新数字，接触瞬间轻弹一下 */
+  animation: pop 0.18s ease 0.13s;
   box-shadow: 0 2px 8px rgba(190, 60, 120, 0.3);
 }
 @keyframes pop {
-  0%   { transform: scale(0.4); }
-  65%  { transform: scale(1.14); }
+  0%   { transform: scale(1); }
+  60%  { transform: scale(1.15); }
   100% { transform: scale(1); }
 }
 

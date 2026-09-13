@@ -28,7 +28,7 @@
     keepPlaying: false,
     over: false,
     nextId: 1,
-    pending: [],       // 待移除的 DOM 方块（被合并吃掉的）
+    pending: [],       // 尚未从 DOM 移除的被吃方块（快速连续操作时的兜底清理）
   };
 
   const VECTORS = {
@@ -209,6 +209,8 @@
           state.grid[mergeTarget.r][mergeTarget.c] = tile;
           slideTo(tile, mergeTarget.r, mergeTarget.c);
           state.pending.push(mergeTarget.el);
+          // 滑动一结束就移除被合并方块，合并数字立即生效；快速连按时由 move 开头的 flushPending 兜底
+          setTimeout(() => mergeTarget.el.remove(), 150);
           tile.value *= 2;
           gained += tile.value;
           mergedIds.add(tile.id);
